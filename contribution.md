@@ -164,12 +164,4 @@ Examples:
 
 ---
 
-## Community Rules
 
-* Be respectful and constructive.
-* Ask questions freely. This library is meant for learning.
-* Keep discussions focused on improving clarity and understanding.
-
----
-
-If you want, I can now write your **README.md**, **GitHub issues**, or the **initial folder template**.
