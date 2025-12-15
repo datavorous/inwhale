@@ -8,7 +8,9 @@ from inwhale.rounding.nearest import NearestRounding
 def test_bits_boundaries():
     obs = MinMaxObserver()
     rnd = NearestRounding()
-    q = DeadZoneSymmetricQuantizer(bits=4, observer=obs, rounding=rnd, threshold_ratio=0.5)
+    q = DeadZoneSymmetricQuantizer(
+        bits=4, observer=obs, rounding=rnd, threshold_ratio=0.5
+    )
     assert q.qmin == -(1 << (4 - 1))
     assert q.qmax == (1 << (4 - 1)) - 1
 
@@ -57,7 +59,7 @@ def test_large_values_outside_deadzone():
     qx = q.quantize(x)
 
     # Values well outside threshold should not be zero
-    non_zero_mask = (x.abs() >= 2 * q.threshold)
+    non_zero_mask = x.abs() >= 2 * q.threshold
     assert torch.all(qx[non_zero_mask] != 0)
 
 

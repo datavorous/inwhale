@@ -179,8 +179,11 @@ class DeadZoneSymmetricQuantizer(BaseQuantizer):
         min_val, max_val = self.observer.get_range()
 
         if max_val == min_val:
-            self.scale = 1.0
-            self.threshold = self.threshold_ratio
+            if isinstance(max_val, torch.Tensor):
+                self.scale = torch.ones_like(max_val)
+            else:
+                self.scale = torch.tensor(1.0)
+            self.threshold = self.threshold_ratio * self.scale
             return
 
         max_abs = torch.max(min_val.abs(), max_val.abs())
