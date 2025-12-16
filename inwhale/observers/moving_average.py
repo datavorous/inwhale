@@ -4,11 +4,17 @@ from .base import Observer
 class MovingAverageObserver(Observer):
     def __init__(self, momentum=0.1):
         super().__init__()
+        if not 0 < momentum <= 1:
+            raise ValueError(f"Momentum must be in the range (0, 1], got {momentum}.")
         self.momentum = momentum
         self.min_val = None
         self.max_val = None
 
     def observe(self, x):
+        if not hasattr(x, "min") or not hasattr(x, "max"):
+            raise TypeError(
+                f"Input must support min() and max() methods, got {type(x).__name__}"
+            )
         min_x = x.min()
         max_x = x.max()
 
