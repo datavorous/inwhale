@@ -19,7 +19,7 @@ class BankersRounding(RoundingStrategy):
     def round(self, x):
         floored = torch.floor(x)
         fractional = x - floored
-        is_half = fractional == 0.5
+        is_half = torch.abs(fractional - 0.5) < 1e-6
 
         rounded = torch.where(
             is_half,
