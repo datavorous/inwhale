@@ -29,7 +29,8 @@ def main():
     dx_rise = mid_rise.dequantize(qx_rise)
 
     print("Mid-rise quantization:")
-    print("x = ", qx_rise)
+    print("x = ", x)
+    print("qx = ", qx_rise)
     print("x' =", dx_rise)
 
 if __name__ == "__main__":
