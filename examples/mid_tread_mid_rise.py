@@ -32,7 +32,7 @@ def main():
     print("x = ", qx_rise)
     print("x' =", dx_rise)
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
 
         
